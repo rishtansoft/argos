@@ -13,10 +13,10 @@ function PersonalInfo() {
         backgroundImage: `url(${background})`,
         backgroundSize: '480px 480px',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right',
+        backgroundPosition: 'right -10px',
       }}
     >
-      <div className='container mx-auto flex justify-between text-custom-black'>
+      <div className='container mx-auto flex justify-between text-custom-black py-4'>
         <div className='flex gap-8'>
           <img
             className='w-[216px] h-[288px]'

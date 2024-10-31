@@ -11,7 +11,8 @@ export default {
       },
       colors: {
         'custom-blue': "#0956AF",
-        'custom-black': "#212529"
+        'custom-black': "#212529",
+        "gray-back": "#F7F7F7"
       }
     },
   },
