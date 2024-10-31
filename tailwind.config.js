@@ -9,6 +9,15 @@ export default {
       fontFamily: {
         custom: ['Rubik', 'sans-serif']
       },
+      colors: {
+        'custom-blue': "#0956AF",
+        'custom-black': "#212529"
+      }
+    },
+  },
+  variants: {
+    extend: {
+      content: ['before', 'after'],
     },
   },
   plugins: [],
