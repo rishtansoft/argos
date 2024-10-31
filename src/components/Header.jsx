@@ -19,7 +19,7 @@ function Header() {
         </div>
 
         <div className='font-size-pointer'>
-          <img className='w-8 cursor-pointer' src={moonLight} alt='' />
+          <img className='w-12 cursor-pointer' src={moonLight} alt='' />
         </div>
       </div>
     </div>

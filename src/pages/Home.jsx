@@ -1,8 +1,11 @@
 import React from 'react'
+import PersonalInfo from '../components/PersonalInfo'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+        <PersonalInfo></PersonalInfo>
+    </div>
   )
 }
 
