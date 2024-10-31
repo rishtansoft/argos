@@ -1,6 +1,6 @@
 import React from 'react';
-import notFoundImage from '../assets/404-2.png';
-import electrity from '../assets/electrity.png';
+import notFoundImage from '../assets/images/404-2.png';
+import electrity from '../assets/images/electrity.png';
 
 const ErrorPage = () => {
   return (
