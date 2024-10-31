@@ -2,6 +2,8 @@ import React from 'react';
 import background from '../assets/images/personal-info-back.png';
 import userImage from '../assets/images/user-image.png';
 import normImage from '../assets/images/norm-index.png';
+import ReactSpeedometer from 'react-d3-speedometer/slim';
+import Gauage from './Gauage';
 
 function PersonalInfo() {
   return (
@@ -28,12 +30,12 @@ function PersonalInfo() {
             </h3>
 
             <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em]'>
-                <span className='text-[#495057]'>Тугилган сана: </span>
-                30.09.1997 йил
+              <span className='text-[#495057]'>Тугилган сана: </span>
+              30.09.1997 йил
             </p>
             <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] mb-[38px]'>
-            <span className='text-[#495057]'>Тугилган жой: </span>
-               Чуст ш., Наманган.
+              <span className='text-[#495057]'>Тугилган жой: </span>
+              Чуст ш., Наманган.
             </p>
 
             <div className='flex gap-3 items-center'>
@@ -50,7 +52,9 @@ function PersonalInfo() {
                 <span>22,9</span>
               </div>
               <div>
-                <img src={normImage} alt='' />
+                <div className='w-full flex justify-center items-center' style={{ height: '50px' }}>
+                  <Gauage></Gauage>
+                </div>
               </div>
             </div>
           </div>
