@@ -52,8 +52,9 @@ function PersonalInfo() {
                 <span>22,9</span>
               </div>
               <div>
-                <div className='w-full flex justify-center items-center' style={{ height: '50px' }}>
-                  <Gauage></Gauage>
+                <div className='w-full flex justify-center items-center flex-col'>
+                  <Gauage></Gauage> 
+                  <span className='text-[14px] font-normal leading-[21px] text-center text-[#0956AF]'>Норма</span>
                 </div>
               </div>
             </div>
