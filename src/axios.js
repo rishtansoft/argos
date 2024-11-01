@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const http = axios.create({
-    baseURL: "http://localhost:5050"
+    // baseURL: "http://localhost:5050"
+    baseURL: "https://trello.vimlc.uz"
 })
 
 http.interceptors.request.use(
