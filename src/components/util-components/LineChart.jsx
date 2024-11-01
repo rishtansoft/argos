@@ -22,9 +22,8 @@ ChartJS.register(
   Legend,
 );
 
-const LineChart = () => {
-  const labels = ['12.06', '18.06', '13.07', '14.07', '20.07', '24.07'];
-  const data = [10, 30, 50, 20, 40, 60];
+const LineChart = ({dataChart}) => {
+  const {labels, data} = dataChart
   const {theme} = useContext(ThemeContext);
 
   const options = {

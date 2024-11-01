@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ProgressBar = ({ percentage = 40, label = "Умумий натижа" }) => {
+const ProgressBar = ({overall}) => {
+  const { percentage = 40, label = "Умумий натижа" } = overall;
   return (
     <div className="w-full max-w-md">
       <div className="text-[#0847A8] dark:text-['#0E9CFF'] text-[48px] font-bold mt-4">
