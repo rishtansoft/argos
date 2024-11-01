@@ -19,7 +19,10 @@ function Header() {
         </div>
 
         <div className='font-size-pointer'>
-          <img className='w-12 cursor-pointer' src={moonLight} alt='' />
+          <button className='border rounded py-3 px-5 border-custom-blue text-custom-blue flex gap-3 items-center hover:bg-slate-200 transition duration-300'>
+            <span className='text-xl'>Қоронғу режим</span>
+            <img className='w-[18px]' src={moonLight} alt="Moon icon" />
+          </button>
         </div>
       </div>
     </div>
