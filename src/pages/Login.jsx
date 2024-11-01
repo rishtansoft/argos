@@ -1,6 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { http } from '../axios';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({setToken}) {
+  const [username, setUsername] = useState('admin');
+  const [password, setPassword] = useState('admin');
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  function notify(message) {
+    toast.error(message, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+  }
+
+  function validate() {
+    if (username.length < 3 || password.length < 3) {
+      notify('Фойдаланувчи номи ёки парол нотўғри киритилди');
+      return false;
+    }
+
+    return true;
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const isValid = validate();
+
+    if (!isValid) {
+      return;
+    }
+
+    const user = {
+      username,
+      password,
+    };
+
+    setLoading(true);
+    http
+      .post('/login', user)
+      .then((response) => {
+        if(response.data.message == "Foydalanuvchi topilmadi" || response.data.message == "Parol noto'g'ri") {
+          notify('Фойдаланувчи номи ёки парол нотўғри киритилди')
+        }
+        
+        if (response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user))
+          navigate('/')
+          setToken(response.data.token)
+        }
+      })
+      .catch((err) => {
+        notify('Фойдаланувчи номи ёки парол нотўғри киритилди');
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
   return (
     <div className='bg-gray-50'>
       <div className='min-h-screen flex flex-col items-center justify-center py-6 px-4'>
@@ -21,6 +90,10 @@ function Login() {
                     required
                     className='w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600'
                     placeholder='Логинни киритинг...'
+                    value={username}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
                   />
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -54,6 +127,10 @@ function Login() {
                     required
                     className='w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600'
                     placeholder='Паролни киритинг...'
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -99,14 +176,18 @@ function Login() {
                 <button
                   type='button'
                   className='w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none'
+                  onClick={handleSubmit}
+                  disabled = {loading}
                 >
-                  Кириш
+                  {loading ? "Кутилмоқда..." : "Кириш"}
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }

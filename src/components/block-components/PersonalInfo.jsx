@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import background from '../../assets/images/personal-info-back.png';
 import userImage from '../../assets/images/user-image.png';
 import Gauage from '../util-components/Gauage';
 
 function PersonalInfo() {
+  const [data, setData] = useState([]);
+
   return (
     <div
       className='bg-cover bg-center dark:bg-dark-background dark:text-white'

@@ -27,7 +27,8 @@ function App() {
     } else {
       navigate('/login');
     }
-  }, [navigate]);
+
+  }, [navigate, token]);
 
   useEffect(() => {
     document.documentElement.className = theme;
@@ -54,7 +55,7 @@ function App() {
             </PrivateRoute>
           }
         ></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/login' element={<Login setToken = {setToken}></Login>}></Route>
         <Route path='*' element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </ThemeContext.Provider>
