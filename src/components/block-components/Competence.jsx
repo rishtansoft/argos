@@ -1,8 +1,8 @@
 import React from 'react';
-import BlockHeader from './BlockHeader';
-import background from '../assets/images/comp-back.png';
-import CircularProgress from './CircularProgress';
-import qr from '../assets/images/qr-code.png'
+import BlockHeader from '../util-components/BlockHeader';
+import background from '../../assets/images/comp-back.png';
+import CircularProgress from '../util-components/CircularProgress';
+import qr from '../../assets/images/qr-code.png'
 
 function Competence() {
   return (

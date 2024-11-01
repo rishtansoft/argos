@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../assets/images/Logo.svg';
+import logo from '../../assets/images/Logo.svg';
 import { Link } from 'react-router-dom';
-import moonLight from '../assets/images/moon-solid.svg';
+import moonLight from '../../assets/images/moon-solid.svg';
 function Header() {
   return (
     <div className='py-10'>

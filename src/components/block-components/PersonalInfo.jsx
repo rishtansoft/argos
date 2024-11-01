@@ -1,9 +1,7 @@
 import React from 'react';
-import background from '../assets/images/personal-info-back.png';
-import userImage from '../assets/images/user-image.png';
-import normImage from '../assets/images/norm-index.png';
-import ReactSpeedometer from 'react-d3-speedometer/slim';
-import Gauage from './Gauage';
+import background from '../../assets/images/personal-info-back.png';
+import userImage from '../../assets/images/user-image.png';
+import Gauage from '../util-components/Gauage';
 
 function PersonalInfo() {
   return (

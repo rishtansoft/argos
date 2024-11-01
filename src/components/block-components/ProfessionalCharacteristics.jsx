@@ -1,8 +1,8 @@
 import React from 'react'
-import BlockHeader from './BlockHeader'
-import HorizontalProgress from './HorizontalProgressBar'
-import fiveChart from '../assets/images/five-chart.svg';
-import background from '../assets/images/ph_briefcase-fill.png';
+import BlockHeader from '../util-components/BlockHeader';
+import HorizontalProgress from '../util-components/HorizontalProgressBar'
+import fiveChart from '../../assets/images/five-chart.svg';
+import background from '../../assets/images/ph_briefcase-fill.png';
 
 function ProfessionalCharacteristics() {
   return (

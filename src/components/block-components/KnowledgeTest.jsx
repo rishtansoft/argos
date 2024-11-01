@@ -1,10 +1,10 @@
 import React from 'react'
-import BlockHeader from './BlockHeader'
-import SemiCircleChart from './SemiCircleChart'
-import LineChart from './LineChart'
-import ProgressBar from './ProgressBarChart'
-import hyperbolicChart from '../assets/images/hyberbolic-chart.svg';
-import brain from '../assets/images/iconoir_brain-electricity.svg';
+import BlockHeader from '../util-components/BlockHeader'
+import SemiCircleChart from '../util-components/SemiCircleChart'
+import LineChart from '../util-components/LineChart'
+import ProgressBar from '../util-components/ProgressBarChart'
+import hyperbolicChart from '../../assets/images/hyberbolic-chart.svg';
+import brain from '../../assets/images/iconoir_brain-electricity.svg';
 
 function KnowledgeTest() {
   return (

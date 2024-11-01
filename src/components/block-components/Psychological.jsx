@@ -1,5 +1,5 @@
 import React from 'react'
-import BlockHeader from './BlockHeader'
+import BlockHeader from '../util-components/BlockHeader'
 
 function Psychological() {
   return (
