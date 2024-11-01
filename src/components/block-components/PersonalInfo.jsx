@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import background from '../../assets/images/personal-info-back.png';
-import userImage from '../../assets/images/user-image.png';
 import Gauage from '../util-components/Gauage';
+import { http } from '../../axios';
+import { notify } from '../../utils';
+import { ToastContainer } from 'react-toastify';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function PersonalInfo() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const fetchPersonalInfo = async () => {
+      try {
+        const response = await http.get('/get-personal-info');
+        if (response.status === 200) {
+          setData(response.data);
+        } else {
+          notify('Шахсий маълумотларни олишда хатолик юз берди');
+        }
+      } catch (error) {
+        notify('Шахсий маълумотларни олишда хатолик юз берди');
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPersonalInfo();
+  }, []);
 
   return (
     <div
@@ -17,67 +43,97 @@ function PersonalInfo() {
       }}
     >
       <div className='container mx-auto flex justify-between text-custom-black py-4 dark:text-white'>
-        <div className='flex gap-8'>
-          <img
-            className='w-[216px] h-[288px]'
-            src={userImage}
-            alt='User image'
-          />
+        {loading && (
           <div>
-            <h3 className='font-rubik text-[44px] font-normal leading-[52.8px] mb-7'>
-              <span className='font-semibold'>Азамат Шарипов</span> <br />
-              Абдуллажон угли
-            </h3>
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+          </div>
+        )}
 
-            <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em]'>
-              <span className='text-[#495057] dark:text-dark-text-secondary'>Тугилган сана: </span>
-              30.09.1997 йил
-            </p>
-            <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] mb-[38px]'>
-              <span className='text-[#495057] dark:text-dark-text-secondary'>Тугилган жой: </span>
-              Чуст ш., Наманган.
-            </p>
+        {!loading && (
+          <div className='flex gap-8'>
+            <img
+              className='w-[216px] h-[288px]'
+              src={data.imageUrl}
+              alt='User image'
+            />
+            <div>
+              <h3 className='font-rubik text-[44px] font-normal leading-[52.8px] mb-7'>
+                <span className='font-semibold'>{data.firstName}</span> <br />
+                {data.lastName}
+              </h3>
 
-            <div className='flex gap-3 items-center'>
-              <div>
-                <span className='font-semibold'>Буйи:</span> <br />
-                <span>175см</span>
-              </div>
-              <div>
-                <span className='font-semibold'>Вазни:</span> <br />
-                <span>70кг</span>
-              </div>
-              <div>
-                <span className='font-semibold'>Индекс:</span> <br />
-                <span>22,9</span>
-              </div>
-              <div>
-                <div className='w-full flex justify-center items-center flex-col'>
-                  <Gauage></Gauage> 
-                  <span className='text-[14px] font-normal leading-[21px] text-center text-[#0956AF]'>Норма</span>
+              <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em]'>
+                <span className='text-[#495057] dark:text-dark-text-secondary'>
+                  Тугилган сана:{' '}
+                </span>
+                {data.birthday}
+              </p>
+              <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] mb-[38px]'>
+                <span className='text-[#495057] dark:text-dark-text-secondary'>
+                  Тугилган жой:{' '}
+                </span>
+                {data.address}
+              </p>
+
+              <div className='flex gap-3 items-center'>
+                <div>
+                  <span className='font-semibold'>Буйи:</span> <br />
+                  <span>{data.height}</span>
+                </div>
+                <div>
+                  <span className='font-semibold'>Вазни:</span> <br />
+                  <span>{data.weight}</span>
+                </div>
+                <div>
+                  <span className='font-semibold'>Индекс:</span> <br />
+                  <span>{data.index}</span>
+                </div>
+                <div>
+                  <div className='w-full flex justify-center items-center flex-col'>
+                    <Gauage></Gauage>
+                    <span className='text-[14px] font-normal leading-[21px] text-center text-[#0956AF]'>
+                      Норма
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
-        <div className='w-[421px]'>
-          <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>
-            Лавозими:
-          </p>
-          <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left mb-3'>
-            Қорақалпоғистон Республикаси Камбағалликни қисқартириш ва бандлик
-            вазири уринбосари
-          </p>
-          <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>
-            Номзод:
-          </p>
-          <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>
-            Қорақалпоғистон Республикаси Камбағалликни қисқартириш ва бандлик
-            вазири
-          </p>
-        </div>
+        {loading && (
+          <div>
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+            <Skeleton height={40} style={{ marginBottom: '10px' }} />
+          </div>
+        )}
+        
+        {!loading && (
+          <div className='w-[421px]'>
+            <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>
+              Лавозими:
+            </p>
+            <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left mb-3'>
+              {data.position}
+            </p>
+            <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>
+              Номзод:
+            </p>
+            <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>
+              {data.candidate}
+            </p>
+          </div>
+        )}
       </div>
+
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

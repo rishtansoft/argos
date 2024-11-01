@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { http } from '../axios';
 import { useNavigate } from 'react-router-dom';
 
-function Login({setToken}) {
+function Login({ setToken }) {
   const [username, setUsername] = useState('admin');
   const [password, setPassword] = useState('admin');
   const [loading, setLoading] = useState(false);
@@ -50,15 +50,18 @@ function Login({setToken}) {
     http
       .post('/login', user)
       .then((response) => {
-        if(response.data.message == "Foydalanuvchi topilmadi" || response.data.message == "Parol noto'g'ri") {
-          notify('Фойдаланувчи номи ёки парол нотўғри киритилди')
+        if (
+          response.data.message == 'Foydalanuvchi topilmadi' ||
+          response.data.message == "Parol noto'g'ri"
+        ) {
+          notify('Фойдаланувчи номи ёки парол нотўғри киритилди');
         }
-        
+
         if (response.data.token) {
           localStorage.setItem('token', response.data.token);
-          localStorage.setItem('user', JSON.stringify(response.data.user))
-          navigate('/')
-          setToken(response.data.token)
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          navigate('/');
+          setToken(response.data.token);
         }
       })
       .catch((err) => {
@@ -177,9 +180,9 @@ function Login({setToken}) {
                   type='button'
                   className='w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none'
                   onClick={handleSubmit}
-                  disabled = {loading}
+                  disabled={loading}
                 >
-                  {loading ? "Кутилмоқда..." : "Кириш"}
+                  {loading ? 'Кутилмоқда...' : 'Кириш'}
                 </button>
               </div>
             </form>
