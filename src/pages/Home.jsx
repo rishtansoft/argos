@@ -4,6 +4,8 @@ import KnowledgeTest from '../components/KnowledgeTest'
 import ProfessionalCharacteristics from '../components/ProfessionalCharacteristics'
 import Psychological from '../components/Psychological'
 import Competence from '../components/Competence'
+import Footer from '../components/Footer'
+
 function Home() {
   return (
     <div>
@@ -12,6 +14,7 @@ function Home() {
         <ProfessionalCharacteristics></ProfessionalCharacteristics>
         <Psychological></Psychological>
         <Competence></Competence>
+        <Footer></Footer>
     </div>
   )
 }
