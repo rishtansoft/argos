@@ -16,16 +16,16 @@ function ProfessionalCharacteristics() {
             <BlockHeader title = 'Шахсий ва касбий хусусиятлар'></BlockHeader>
 
             <div className='flex gap-3'>
-                <div class="w-[38%]">
+                <div className="w-[38%]">
                     <HorizontalProgress label='Максадга интилувчанлик' percentage={90}></HorizontalProgress>
                     <HorizontalProgress label='Эмоционал интеллект' percentage={95}></HorizontalProgress>
                     <HorizontalProgress label='Креативлик' percentage={75}></HorizontalProgress>
                     <HorizontalProgress label='Ходимларга йуналганлик' percentage={86}></HorizontalProgress>
                 </div>
-                <div class="w-[24%]">
+                <div className="w-[24%]">
                     <img className='block mx-auto' src={fiveChart} alt="" />
                 </div>
-                <div class="w-[38%]">
+                <div className="w-[38%]">
                     <HorizontalProgress label='Максадга интилувчанлик' percentage={90}></HorizontalProgress>
                     <HorizontalProgress label='Эмоционал интеллект' percentage={95}></HorizontalProgress>
                     <HorizontalProgress label='Креативлик' percentage={75}></HorizontalProgress>
