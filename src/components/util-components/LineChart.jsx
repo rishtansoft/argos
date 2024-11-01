@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { ThemeContext } from '../../App';
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +25,7 @@ ChartJS.register(
 const LineChart = () => {
   const labels = ['12.06', '18.06', '13.07', '14.07', '20.07', '24.07'];
   const data = [10, 30, 50, 20, 40, 60];
+  const {theme} = useContext(ThemeContext);
 
   const options = {
     responsive: true,
@@ -37,7 +39,7 @@ const LineChart = () => {
           font: {
             size: 12
           },
-          color: '#000000',
+          color: theme == 'light' ? '#000000' : "white",
           stepSize: 25
         },
         grid: {
@@ -54,7 +56,7 @@ const LineChart = () => {
           font: {
             size: 12
           },
-          color: '#000000'
+          color: theme == 'light' ? '#000000' : "white"
         },
         grid: {
           display: true,

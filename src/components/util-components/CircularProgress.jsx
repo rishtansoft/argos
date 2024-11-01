@@ -48,10 +48,10 @@ const DonutProgress = ({ percentage = 85, label = "Стратегик фикрл
       <div className="relative w-32 h-32">
         <Doughnut data={data} options={options} />
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-[24px] font-semibold text-black">{percentage}%</span>
+          <span className="text-[24px] font-semibold text-black dark:text-white">{percentage}%</span>
         </div>
       </div>
-      <div className="text-[24px] font-semibold text-black">
+      <div className="text-[24px] font-semibold text-black dark:text-white">
         {label}
       </div>
     </div>

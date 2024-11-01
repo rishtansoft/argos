@@ -8,7 +8,7 @@ import brain from '../../assets/images/iconoir_brain-electricity.svg';
 
 function KnowledgeTest() {
   return (
-    <div className='bg-gray-back py-6'>
+    <div className='bg-gray-back py-6 dark:bg-dark-secondary dark:text-white'>
         <div className="container mx-auto">
             <BlockHeader title = 'Билим тести'></BlockHeader>
             

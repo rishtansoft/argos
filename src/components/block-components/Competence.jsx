@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BlockHeader from '../util-components/BlockHeader';
 import background from '../../assets/images/comp-back.png';
 import CircularProgress from '../util-components/CircularProgress';
 import qr from '../../assets/images/qr-code.png'
+import qrLight from '../../assets/images/qr-light.png'
+import { ThemeContext } from '../../App';
 
 function Competence() {
+  const {theme} = useContext(ThemeContext);
   return (
     <div
-      className='py-6 bg-red'
-      style={{
+      className='py-6 bg-red dark:bg-dark-background dark:text-white'
+      style={theme == 'light' ? {
         backgroundImage: `url(${background})`,
         backgroundSize: '100% 689px',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '0px -210px',
-      }}
+      } : {}}
     >
       <div className='container mx-auto'>
         <BlockHeader title='Компетенцияларнинг намоён булиши'></BlockHeader>
@@ -46,7 +49,10 @@ function Competence() {
           </div>
 
           <div>
-            <img src={qr} alt="QR code" />
+            {
+              theme == 'light' ? <img src={qr} alt="QR code" /> : <img className='w-[220px]' src={qrLight} alt="QR code" />
+            }
+            
           </div>
         </div>
       </div>

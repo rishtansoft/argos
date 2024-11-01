@@ -17,7 +17,7 @@ const HorizontalProgress = ({ percentage = 90, label = "Мақсадга инт�
           </div>
         </div>
 
-        <div className="font-bold text-custom-black text-[18px]">
+        <div className="font-bold text-custom-black text-[18px] dark:text-white">
           {percentage}%
         </div>
       </div>

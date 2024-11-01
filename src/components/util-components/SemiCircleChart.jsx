@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GaugeComponent from 'react-gauge-component';
-import GaugeChart from 'react-gauge-chart';
-import Gauge from 'react-gauge-component';
-
+import { ThemeContext } from '../../App';
 
 function SemiCircleChart({ percentage = 33, label = 'Конституциявий-ҳуқуқий саводхонлик', color = '#0956AF' }) {
+  const {theme} = useContext(ThemeContext);
+
   return (
     <div className='flex flex-col'>
       <GaugeComponent
@@ -34,7 +34,7 @@ function SemiCircleChart({ percentage = 33, label = 'Конституцияви�
             formatTextValue: () => percentage + '%',
             style: { 
               fontSize: 45,
-              fill: '#000000'
+              fill: theme == 'light' ? '#000000' : "#ffffff"
             },
           },
           tickLabels: {
@@ -46,7 +46,7 @@ function SemiCircleChart({ percentage = 33, label = 'Конституцияви�
         maxValue={100}
       />
 
-      <h3 className='text-base font-normal leading-6 text-center text-[#495057]' style={{marginTop: "-18px"}}>{label}</h3>
+      <h3 className='text-base font-normal leading-6 text-center text-[#495057] dark:text-white' style={{marginTop: "-18px"}}>{label}</h3>
     </div>
     
   );

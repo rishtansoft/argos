@@ -3,7 +3,7 @@ import BlockHeader from '../util-components/BlockHeader'
 
 function Psychological() {
   return (
-    <div className='bg-gray-back py-6'>
+    <div className='bg-gray-back py-6 dark:bg-dark-secondary dark:text-white'>
         <div className="container mx-auto">
             <BlockHeader title = 'Психологик диагностика'></BlockHeader>
 

@@ -23,11 +23,23 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      setToken(localStorage.getItem('token'))
+      setToken(localStorage.getItem('token'));
     } else {
-      navigate('/login')
+      navigate('/login');
     }
-  }, [navigate])
+  }, [navigate]);
+
+  useEffect(() => {
+    document.documentElement.className = theme;
+  }, [theme]);
+
+  useEffect(() => {
+    if (localStorage.getItem('theme')) {
+      setTheme(localStorage.getItem('theme'));
+    } else {
+      setTheme('light');
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

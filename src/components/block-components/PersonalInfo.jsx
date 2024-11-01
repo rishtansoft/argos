@@ -6,7 +6,7 @@ import Gauage from '../util-components/Gauage';
 function PersonalInfo() {
   return (
     <div
-      className='bg-cover bg-center '
+      className='bg-cover bg-center dark:bg-dark-background dark:text-white'
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: '480px 480px',
@@ -14,7 +14,7 @@ function PersonalInfo() {
         backgroundPosition: 'right -10px',
       }}
     >
-      <div className='container mx-auto flex justify-between text-custom-black py-4'>
+      <div className='container mx-auto flex justify-between text-custom-black py-4 dark:text-white'>
         <div className='flex gap-8'>
           <img
             className='w-[216px] h-[288px]'
@@ -28,11 +28,11 @@ function PersonalInfo() {
             </h3>
 
             <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em]'>
-              <span className='text-[#495057]'>Тугилган сана: </span>
+              <span className='text-[#495057] dark:text-dark-text-secondary'>Тугилган сана: </span>
               30.09.1997 йил
             </p>
             <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] mb-[38px]'>
-              <span className='text-[#495057]'>Тугилган жой: </span>
+              <span className='text-[#495057] dark:text-dark-text-secondary'>Тугилган жой: </span>
               Чуст ш., Наманган.
             </p>
 

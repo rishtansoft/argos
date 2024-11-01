@@ -6,7 +6,7 @@ import background from '../../assets/images/ph_briefcase-fill.png';
 
 function ProfessionalCharacteristics() {
   return (
-    <div className='py-6' style={{
+    <div className='py-6 dark:bg-dark-background dark:text-white' style={{
         backgroundImage: `url(${background})`,
         backgroundSize: '335px 335px',
         backgroundRepeat: 'no-repeat',
