@@ -19,7 +19,6 @@ function KnowledgeTest() {
         const response = await http.get('/knowlodge');
         if (response.status === 200) {
           setData(response.data);
-          console.log(response.data);
         } else {
           notify('Билим тести маълумотларни олишда хатолик юз берди');
         }

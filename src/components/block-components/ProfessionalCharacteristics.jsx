@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import BlockHeader from '../util-components/BlockHeader';
 import HorizontalProgress from '../util-components/HorizontalProgressBar';
 import fiveChart from '../../assets/images/five-chart.svg';
@@ -9,19 +9,22 @@ import { http } from '../../axios';
 function ProfessionalCharacteristics() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [leftHalf, setLeftHalf] = useState([]);
+  const [rightHalf, setRightHalf] = useState([]);
 
   useEffect(() => {
     setLoading(true);
     const fetchPersonalInfo = async () => {
       try {
-        const response = await http.get('/knowlodge');
+        const response = await http.get('/professional');
+        
         if (response.status === 200) {
           setData(response.data);
         } else {
-          notify('Билим тести маълумотларни олишда хатолик юз берди');
+          notify('Шахсий ва касбий хусусиятларни олишда хатолик юз берди');
         }
       } catch (error) {
-        notify('Билим тести маълумотларни олишда хатолик юз берди');
+        notify('Шахсий ва касбий хусусиятларни олишда хатолик юз берди');
         console.error(error);
       } finally {
         setLoading(false);
@@ -30,6 +33,14 @@ function ProfessionalCharacteristics() {
 
     fetchPersonalInfo();
   }, []);
+
+  useEffect(() => {
+    if (data?.percents?.length) {
+      setLeftHalf(data.percents.slice(0, data.percents.length / 2));
+      setRightHalf(data.percents.slice(data.percents.length / 2));
+    }
+  }, [data]);
+  
   return (
     <div
       className='py-6 dark:bg-dark-background dark:text-white'
@@ -45,43 +56,31 @@ function ProfessionalCharacteristics() {
 
         <div className='flex gap-3'>
           <div className='w-[38%]'>
-            <HorizontalProgress
-              label='Максадга интилувчанлик'
-              percentage={90}
-            ></HorizontalProgress>
-            <HorizontalProgress
-              label='Эмоционал интеллект'
-              percentage={95}
-            ></HorizontalProgress>
-            <HorizontalProgress
-              label='Креативлик'
-              percentage={75}
-            ></HorizontalProgress>
-            <HorizontalProgress
-              label='Ходимларга йуналганлик'
-              percentage={86}
-            ></HorizontalProgress>
+            {leftHalf.length > 0 &&
+              leftHalf.map((value, index) => {
+                return (
+                  <HorizontalProgress
+                    key={index}
+                    label={value.label}
+                    percentage={value.percentage}
+                  ></HorizontalProgress>
+                );
+              })}
           </div>
           <div className='w-[24%]'>
             <img className='block mx-auto' src={fiveChart} alt='' />
           </div>
           <div className='w-[38%]'>
-            <HorizontalProgress
-              label='Максадга интилувчанлик'
-              percentage={90}
-            ></HorizontalProgress>
-            <HorizontalProgress
-              label='Эмоционал интеллект'
-              percentage={95}
-            ></HorizontalProgress>
-            <HorizontalProgress
-              label='Креативлик'
-              percentage={75}
-            ></HorizontalProgress>
-            <HorizontalProgress
-              label='Ходимларга йуналганлик'
-              percentage={86}
-            ></HorizontalProgress>
+            {rightHalf.length > 0 &&
+              rightHalf.map((value, index) => {
+                return (
+                  <HorizontalProgress
+                    key={index}
+                    label={value.label}
+                    percentage={value.percentage}
+                  ></HorizontalProgress>
+                );
+              })}
           </div>
         </div>
       </div>
