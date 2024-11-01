@@ -2,13 +2,14 @@ import React from 'react';
 import background from '../../assets/images/personal-info-back.png';
 import Gauage from '../util-components/Gauage';
 import { ToastContainer } from 'react-toastify';
+import useFetch from '../../hooks/useFetch';
+
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import useFetch from '../../hooks/useFetch';
 
 function PersonalInfo() {
   const { data, loading } = useFetch('/get-personal-info');
-  
+
   return (
     <div
       className='bg-cover bg-center dark:bg-dark-background dark:text-white'
@@ -20,16 +21,6 @@ function PersonalInfo() {
       }}
     >
       <div className='container mx-auto flex justify-between text-custom-black py-4 dark:text-white'>
-        {loading && (
-          <div>
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-          </div>
-        )}
-
         {!loading && (
           <div className='flex gap-8'>
             <img

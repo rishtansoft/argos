@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import BlockHeader from '../util-components/BlockHeader';
 import HorizontalProgress from '../util-components/HorizontalProgressBar';
-import fiveChart from '../../assets/images/five-chart.svg';
 import background from '../../assets/images/ph_briefcase-fill.png';
 import useFetch from '../../hooks/useFetch';
+import RadarChartComponent from '../util-components/RadarChart';
 
 function ProfessionalCharacteristics() {
   const [leftHalf, setLeftHalf] = useState([]);
@@ -45,7 +45,7 @@ function ProfessionalCharacteristics() {
               })}
           </div>
           <div className='w-[24%]'>
-            <img className='block mx-auto' src={fiveChart} alt='' />
+            <RadarChartComponent></RadarChartComponent>
           </div>
           <div className='w-[38%]'>
             {rightHalf.length > 0 &&
