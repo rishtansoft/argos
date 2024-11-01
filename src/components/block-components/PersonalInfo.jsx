@@ -1,37 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import background from '../../assets/images/personal-info-back.png';
 import Gauage from '../util-components/Gauage';
-import { http } from '../../axios';
-import { notify } from '../../utils';
 import { ToastContainer } from 'react-toastify';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useFetch from '../../hooks/useFetch';
 
 function PersonalInfo() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchPersonalInfo = async () => {
-      try {
-        const response = await http.get('/get-personal-info');
-        if (response.status === 200) {
-          setData(response.data);
-        } else {
-          notify('Шахсий маълумотларни олишда хатолик юз берди');
-        }
-      } catch (error) {
-        notify('Шахсий маълумотларни олишда хатолик юз берди');
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPersonalInfo();
-  }, []);
-
+  const { data, loading } = useFetch('/get-personal-info');
+  
   return (
     <div
       className='bg-cover bg-center dark:bg-dark-background dark:text-white'
@@ -114,7 +91,7 @@ function PersonalInfo() {
             <Skeleton height={40} style={{ marginBottom: '10px' }} />
           </div>
         )}
-        
+
         {!loading && (
           <div className='w-[421px]'>
             <p className='font-rubik text-[20px] font-normal leading-[31px] tracking-[0.02em] text-left'>

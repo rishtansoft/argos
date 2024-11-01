@@ -3,36 +3,13 @@ import BlockHeader from '../util-components/BlockHeader';
 import HorizontalProgress from '../util-components/HorizontalProgressBar';
 import fiveChart from '../../assets/images/five-chart.svg';
 import background from '../../assets/images/ph_briefcase-fill.png';
-import { notify } from '../../utils';
-import { http } from '../../axios';
+import useFetch from '../../hooks/useFetch';
 
 function ProfessionalCharacteristics() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [leftHalf, setLeftHalf] = useState([]);
   const [rightHalf, setRightHalf] = useState([]);
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchPersonalInfo = async () => {
-      try {
-        const response = await http.get('/professional');
-        
-        if (response.status === 200) {
-          setData(response.data);
-        } else {
-          notify('Шахсий ва касбий хусусиятларни олишда хатолик юз берди');
-        }
-      } catch (error) {
-        notify('Шахсий ва касбий хусусиятларни олишда хатолик юз берди');
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPersonalInfo();
-  }, []);
+  const { data, loading } = useFetch('/professional');
 
   useEffect(() => {
     if (data?.percents?.length) {
@@ -40,7 +17,7 @@ function ProfessionalCharacteristics() {
       setRightHalf(data.percents.slice(data.percents.length / 2));
     }
   }, [data]);
-  
+
   return (
     <div
       className='py-6 dark:bg-dark-background dark:text-white'
