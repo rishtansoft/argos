@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { http } from '../axios';
+import { useNavigate } from 'react-router-dom';
 
 const useFetch = (url) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,7 +19,12 @@ const useFetch = (url) => {
 
                 setData(response.data);
                 
-            } catch (error) {
+            } catch (error) {                
+                if (error.status == 403) {
+                    navigate('/login');
+                    localStorage.clear();
+                }
+                
                 setError(error);
             } finally {
                 setLoading(false);

@@ -3,9 +3,8 @@ import background from '../../assets/images/personal-info-back.png';
 import Gauage from '../util-components/Gauage';
 import { ToastContainer } from 'react-toastify';
 import useFetch from '../../hooks/useFetch';
-
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import LazyImage from '../util-components/Image';
+import PersonalInfoLoading from '../util-components/PersonalInfoLoading';
 
 function PersonalInfo() {
   const { data, loading } = useFetch('/get-personal-info');
@@ -21,13 +20,15 @@ function PersonalInfo() {
       }}
     >
       <div className='container mx-auto flex justify-between text-custom-black py-4 dark:text-white'>
+      {loading && <PersonalInfoLoading loading={loading}></PersonalInfoLoading>}
+
         {!loading && (
           <div className='flex gap-8'>
-            <img
+            <LazyImage
               className='w-[216px] h-[288px]'
               src={data.imageUrl}
               alt='User image'
-            />
+            ></LazyImage>
             <div>
               <h3 className='font-rubik text-[44px] font-normal leading-[52.8px] mb-7'>
                 <span className='font-semibold'>{data.firstName}</span> <br />
@@ -70,16 +71,6 @@ function PersonalInfo() {
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {loading && (
-          <div>
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
-            <Skeleton height={40} style={{ marginBottom: '10px' }} />
           </div>
         )}
 
